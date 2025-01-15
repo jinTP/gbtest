@@ -14,20 +14,35 @@ This app predicts the **Iris flower** type!
 st.sidebar.header('User Input Parameters')
 
 def user_input_features():
-    sepal_length = st.sidebar.slider('Sepal length', 4.3, 7.9, 5.4)
-    sepal_width = st.sidebar.slider('Sepal width', 2.0, 4.4, 3.4)
-    petal_length = st.sidebar.slider('Petal length', 1.0, 6.9, 1.3)
-    petal_width = st.sidebar.slider('Petal width', 0.1, 2.5, 0.2)
-    data = {'sepal_length': sepal_length,
-            'sepal_width': sepal_width,
-            'petal_length': petal_length,
-            'petal_width': petal_width}
+    car_ID = st.sidebar.slider('car_ID', 4.3, 7.9, 5.4)
+    wheelbase = st.sidebar.slider('wheelbase', 2.0, 4.4, 3.4)
+    carlength = st.sidebar.slider('carlength', 1.0, 6.9, 1.3)
+    carwidth = st.sidebar.slider('carwidth', 0.1, 2.5, 0.2)
+
+    data = {'car_ID': car_ID,
+            'wheelbase': wheelbase,
+            'carlength': carlength,
+            'carwidth': carwidth}
     features = pd.DataFrame(data, index=[0])
     return features.to_numpy()
 #add a to_numpy() here ^
+
 
 df = user_input_features()
 
 st.subheader('User Input parameters')
 st.write(df)
 
+
+prediction = model.predict(df)
+prediction_proba = model.predict_proba(df)
+
+st.subheader('Class labels and their corresponding index number')
+st.write(model.target_names)
+
+st.subheader('Prediction')
+st.write(model.target_names[prediction])
+#st.write(prediction)
+
+st.subheader('Prediction Probability')
+st.write(prediction_proba)
