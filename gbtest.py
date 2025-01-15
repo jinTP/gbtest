@@ -35,14 +35,8 @@ st.write(df)
 
 
 prediction = model.predict(df)
-prediction_proba = model.predict_proba(df)
-
-st.subheader('Class labels and their corresponding index number')
-st.write(model.target_names)
 
 st.subheader('Prediction')
-st.write(model.target_names[prediction])
+st.write(prediction[0])
 #st.write(prediction)
 
-st.subheader('Prediction Probability')
-st.write(prediction_proba)
